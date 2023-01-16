@@ -1,0 +1,66 @@
+/* Add some basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header and navigation menu */
+header {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+header nav {
+    display: flex;
+}
+
+header nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+header nav a:hover {
+    color: #777;
+}
+
+/* Style the main content sections */
+main {
+    padding: 20px;
+}
+
+main section {
+    margin-bottom: 20px;
+}
+
+main section h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+main section p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Style the footer */
+footer {
+    background-color: #f5f5f5;
+    padding: 10px;
+    text-align: center;
+}
+
+footer nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+footer nav a:hover {
+    color: #777;
+}
