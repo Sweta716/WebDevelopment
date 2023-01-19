@@ -278,6 +278,47 @@
       button[type=submit]:hover {
         background-color: pink;
       }
+      form {
+        width: 50%;
+        margin: 0 auto;
+      }
+      
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+      }
+      
+      input, textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      
+      input[type="submit"] {
+        position: relative;
+        z-index: 2;
+      }
+      form {
+        margin-bottom: 100px;
+      }
   
       
 
