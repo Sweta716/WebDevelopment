@@ -7,6 +7,9 @@
         height: calc(100vh - 80px);
     overflow-y: scroll;
       }
+      h1{
+        font-family: Comic Sans MS, Cursive;
+      }
       
       /* Header Styles */
       header {
@@ -137,12 +140,14 @@
         font-size: 10;
       }
       #featured {
+        flex-direction:column
         display: flex; /* makes the children elements in a flex container */
         justify-content: center; /* centers the elements horizontally */
         align-items: center; /* centers the elements vertically */
         flex-wrap: wrap; /* allows the elements to wrap to the next line if they don't fit in the container */
         text-align: center; /* centers the text within the elements */
-    }
+        }
+      
     #featured h2 {
         text-align: center;
         font-family: Arial, sans-serif;
