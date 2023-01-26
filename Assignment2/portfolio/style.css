@@ -55,6 +55,18 @@ h3 {
   letter-spacing: -0.028em;
   line-height: 1.1;
 }
+@media (max-width: 600px) {
+  header a {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+
 
 p {
   font-size: 1rem;
@@ -77,6 +89,9 @@ textarea:focus-visible {
 input:invalid,
 textarea:invalid {
   outline-color: hsl(7, 100%, 68%);
+}
+figcaption{
+  text-align: center;
 }
 
 a.underline,
@@ -417,6 +432,7 @@ h1>span {
 
 .skills {
   position: relative;
+  background-color: #39ff14;
 }
 
 .skills__wrapper {
@@ -511,9 +527,14 @@ h1>span {
 }
 
 .projects__image {
-  width: 100%;
+  width: 50%;
   height: auto;
+  border-radius: 50%;
 }
+.projects__image {
+  border-color: red;
+  border-width: 10px;
+} 
 
 .projects__name {
   font-size: 1.5rem;
@@ -647,6 +668,70 @@ h1>span {
     margin-block-end: 0;
   }
 }
+
+#reviews {
+  text-align: left;
+  background-color:#39ff14 ;
+  
+  font-size: xx-large;
+  color: white;
+
+}
+.review-text{
+  color: black;
+  font-size: xx-large;
+}
+.review-author{
+  color: black;
+  font-size: larger;
+}
+
+.review-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  text-shadow: white;
+  position: relative;
+  color: black;
+}
+
+.review {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+
+  animation: slide 20s infinite;
+  animation-iteration-count: infinite;
+
+  animation-fill-mode: forwards;
+
+}
+
+
+
+.review:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.review:nth-child(3) {
+  animation-delay: 10s;
+}
+
+@keyframes slide {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
 
 /* CONTACT */
 
