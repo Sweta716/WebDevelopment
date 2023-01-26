@@ -24,5 +24,5 @@ Following HTML 5 tags are used
 <div> ag is used for defining a section of your document
 <p> for paragraph tag
 <h1> for heading
-
+<hr> for horizontal line
 
