@@ -1,275 +1,158 @@
 //Title constructor function that creates a Title object
-function Title(t1) 
-{ this.mytitle = t1;
+function Title(t1) {
+  this.mytitle = t1;
 }
 
-Title.prototype.getName = function () 
-{ 
-return (this.mytitle);
-}
+Title.prototype.getName = function () {
+  return this.mytitle;
+};
 
 var socialMedia = {
-  facebook : 'http://facebook.com',
-  twitter: 'http://twitter.com',
-  flickr: 'http://flickr.com',
-  youtube: 'http://youtube.com'
+  facebook: "http://facebook.com",
+  twitter: "http://twitter.com",
+  flickr: "http://flickr.com",
+  youtube: "http://youtube.com",
 };
 
 var t = new Title("CONNECT WITH ME!");
+var count = 3;
+var myArray = new Array();
 
-
-function deleteRow(r) {
-var i = r.parentNode.parentNode.rowIndex;
-document.getElementById("myTable").deleteRow(i);
+var hideRow = document.getElementsByClassName("dropDownTextArea");
+for (let i = 0; i < hideRow.length; i++) {
+  hideRow[i].style.display = "none";
 }
 
-var addButton = document.getElementById("add");
-addButton.addEventListener("click", addNewStudent);
+document.getElementById("button").disabled = "disabled";
+var rowState = false;
 
-function deleteRow(btn) {
-  var row = btn.parentNode.parentNode;
-  row.parentNode.removeChild(row);
-}
-
-
-var downArrows = document.getElementsByTagName("img");
-for (var i = 0; i < downArrows.length; i++) {
-  if (downArrows[i].src.includes("down.png")) {
-    downArrows[i].addEventListener("click", toggleDetails);
-  }
-}
-
-function toggleDetails() {
-  var detailsRow = this.parentNode.parentNode.nextElementSibling;
-  if (detailsRow.style.display === "none") {
-    detailsRow.style.display = "table-row";
-  } else {
-    detailsRow.style.display = "none";
-  }
-}
-
-
-var table = document.getElementById("myTable");
-var submitButton = document.getElementById("button");
-
-// set initial state of button to disabled
-submitButton.disabled = true;
-submitButton.style.backgroundColor = "gray";
-
-// add event listener to table to check for changes in checkbox state
-table.addEventListener("change", checkSelected);
-
-function checkSelected(e) {
-// find all checkboxes in table
-var checkboxes = table.querySelectorAll("input[type='checkbox']");
-
-// loop through checkboxes to see if any are checked
-var checked = false;
-for (var i = 0; i < checkboxes.length; i++) {
-if (checkboxes[i].checked) {
-checked = true;
-break;
-}
-}
-
-// update state of submit button based on checkbox state
-if (checked) {
-submitButton.disabled = false;
-submitButton.style.backgroundColor = "orange";
-} else {
-submitButton.disabled = true;
-submitButton.style.backgroundColor = "gray";
-}
-
-// update row background color based on checkbox state
-if (e.target.type === "checkbox") {
-if (e.target.checked) {
-e.target.parentNode.parentNode.style.backgroundColor = "yellow";
-} else {
-e.target.parentNode.parentNode.style.backgroundColor = "white";
-}
-}
-}
-
-// add event listener to "Add new student" button to update checkSelected function
-document.getElementById("add").addEventListener("click", function() {
-// add code to add new student here
-
-// add event listener to new checkbox
-var newCheckbox = table.querySelector("input[type='checkbox']:last-of-type");
-newCheckbox.addEventListener("change", checkSelected);
-});
-
-
-
-
-// function to toggle visibility of dropDownTextArea
-function toggleDetails(e) {
-  var img = e.target;
-  var dropDownTextArea = img.parentNode.parentNode.nextElementSibling;
-  if (dropDownTextArea.style.display === "none") {
-    dropDownTextArea.style.display = "table-row";
-  } else {
-    dropDownTextArea.style.display = "none";
-  }
-  }
-  
-  // function to toggle visibility of delete and edit buttons
-  function toggleButtons(e) {
-  var checkbox = e.target;
-  var row = checkbox.parentNode.parentNode;
-  var deleteBtn = row.cells[9].firstChild;
-  var editBtn = row.cells[10].firstChild;
-  if (checkbox.checked) {
-    deleteBtn.style.display = "block";
-    editBtn.style.display = "block";
-  } else {
-    deleteBtn.style.display = "none";
-    editBtn.style.display = "none";
-  }
-  }
-  
-
-var counter = 4;
-
-function addNewStudent() {
-var table = document.getElementById("myTable");
-var row = table.insertRow();
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-var cell3 = row.insertCell(2);
-var cell4 = row.insertCell(3);
-var cell5 = row.insertCell(4);
-var cell6 = row.insertCell(5);
-var cell7 = row.insertCell(6);
-var cell8 = row.insertCell(7);
-var cell9 = row.insertCell(8);
-var cell10 = row.insertCell(9);
-
-cell1.innerHTML = '<input type="checkbox" class="checkbox"/><br /><br /><img src="down.png" width="25px" />';
-cell2.innerHTML = 'Student ' + counter;
-cell3.innerHTML = 'Teacher ' + counter;
-cell4.innerHTML = 'Approved';
-cell5.innerHTML = 'Fall';
-cell6.innerHTML = 'TA';
-cell7.innerHTML = '12345';
-cell8.innerHTML = '100%';
-
-// add delete button on the row
-var deleteBtn = document.createElement("BUTTON");
-deleteBtn.innerHTML = "Delete";
-deleteBtn.classList.add("delete");
-deleteBtn.style.display = "none";
-deleteBtn.addEventListener("click", function() { deleteRow(this); });
-cell9.appendChild(deleteBtn);
-
-// add edit button on the row
-var editBtn = document.createElement("BUTTON");
-editBtn.innerHTML = "Edit";
-editBtn.classList.add("edit");
-editBtn.style.display = "none";
-editBtn.addEventListener("click", function() { editRow(this); });
-cell10.appendChild(editBtn);
-
-// create new row for dropdown text area
-var newRow = table.insertRow();
-newRow.classList.add("dropDownTextArea");
-var newCell = newRow.insertCell(0);
-newCell.colSpan = 8;
-newCell.innerHTML = 'Advisor:<br /><br /> Award Details<br />Summer 1-2014(TA)<br />Budget Number: <br />Tuition Number: <br />Comments:<br /><br /><br />Award Status:<br /><br /><br />';
-newRow.style.display = "none";
-
-// add event listener for down arrow image
-var downArrows = document.getElementsByTagName("img");
-for (var i = 0; i < downArrows.length; i++) {
-if (downArrows[i].src.includes("down.png")) {
-downArrows[i].addEventListener("click", toggleDetails);
-}
-}
-
-// add event listener for checkbox
-var checkboxes = document.getElementsByClassName("checkbox");
-for (var i = 0; i < checkboxes.length; i++) {
-checkboxes[i].addEventListener("click", toggleButtons);
-}
-
-alert ("Record added successfully");
-counter++;
-} 
-
-function deleteRow(btn) {
-  var row = btn.parentNode.parentNode;
+function addNewRow() {
   var table = document.getElementById("myTable");
-  var dropDownRow = row.nextSibling;
-  table.deleteRow(row.rowIndex);
-  table.deleteRow(dropDownRow.rowIndex);
-  alert("Record deleted successfully");
-  }
-  
-  function editRow(btn) {
-    alert("Edit the details");
-  }
-  
-  function toggleButtons() {
-    var checkbox = this;
-    var row = checkbox.parentNode.parentNode;
-    var deleteBtn = row.cells[8].getElementsByClassName("delete")[0];
-    var editBtn = row.cells[9].getElementsByClassName("edit")[0];
-  
-    if (checkbox.checked) {
-      deleteBtn.style.display = "block";
-      editBtn.style.display = "block";
-    } else {
-      deleteBtn.style.display = "none";
-      editBtn.style.display = "none";
-    }
-  }
+  var tbodyRef = document.getElementsByTagName("tbody")[0];
+  console.log(tbodyRef);
+  var lastStudent =
+    table.lastElementChild.lastElementChild?.previousElementSibling
+      ?.firstElementChild?.nextElementSibling?.innerHTML || "Student 0";
+  var latestIndex = lastStudent.split(" ")[1];
+  var tdNode = document.createElement("tr");
+  var trCheckBoxCell = document.createElement("td");
+  trCheckBoxCell.innerHTML =
+    '<input id="checkbox" type = "checkbox" onclick="onCheckBoxClick(this)"/> <br /><br /><img src="down.png" width="25px" onclick="showDropDown(this)"/>';
+  var trStudentCell = document.createElement("td");
+  trStudentCell.innerHTML = "Student " + (parseInt(latestIndex) + 1);
+  var trTeacherCell = document.createElement("td");
+  trTeacherCell.innerHTML = "Teacher " + (parseInt(latestIndex) + 1);
+  var trAwardStatusCell = document.createElement("td");
+  trAwardStatusCell.innerHTML = "Approved";
+  var trSemesterCell = document.createElement("td");
+  trSemesterCell.innerHTML = "Fall";
+  var trTypeCell = document.createElement("td");
+  trTypeCell.innerHTML = "TA";
+  var trBudgetCell = document.createElement("td");
+  trBudgetCell.innerHTML =
+    " " +
+    (parseInt(latestIndex) + 1) +
+    (parseInt(latestIndex) + 2) +
+    (parseInt(latestIndex) + 3) +
+    (parseInt(latestIndex) + 4) +
+    (parseInt(latestIndex) + 5);
+  var trPercentageCell = document.createElement("td");
+  trPercentageCell.innerHTML = "100%";
+  var trRow = document.createElement("tr");
+  trRow.innerHTML = `<tr class="dropDownTextArea"><td colspan="8">Advisor:<br /><br />Award Details<br />Summer 1-2014(TA)<br />Budget Number: <br />Tuition Number: <br />Comments:<br /><br /><br />Award Status:<br /><br /><br /></td></tr>`;
 
-  function toggleVisibility() {
-    let dropDownTextArea = document.getElementById("dropDownTextArea");
-    if (dropDownTextArea.style.display === "none") {
-      dropDownTextArea.style.display = "block";
-    } else {
-      dropDownTextArea.style.display = "none";
-    }
-  }
+  tdNode.appendChild(trCheckBoxCell);
+  tdNode.appendChild(trStudentCell);
+  tdNode.appendChild(trTeacherCell);
+  tdNode.appendChild(trAwardStatusCell);
+  tdNode.appendChild(trSemesterCell);
+  tdNode.appendChild(trTypeCell);
+  tdNode.appendChild(trBudgetCell);
+  tdNode.appendChild(trPercentageCell);
+  tbodyRef.appendChild(tdNode);
+  tbodyRef.appendChild(trRow);
 
-  function deleteRow(btn) {
-	  var row = btn.parentNode.parentNode;
-	  row.parentNode.removeChild(row);
-	  alert("Row deleted successfully");
-	}
+  var middleRow = table.lastElementChild?.lastElementChild;
+  middleRow.style.display = "none";
 
-  function showButtons(checkbox) {
-    var row = checkbox.parentNode.parentNode;
-    var deleteButton = row.querySelector("button[onclick='deleteRow(this)']");
-    var editButton = row.querySelector("button[onclick='showEditPopup(this)']");
-
-if (checkbox.checked) {
-  deleteButton.style.display = "block";
-  editButton.style.display = "block";
-} else {
-  deleteButton.style.display = "none";
-  editButton.style.display = "none";
+  alert("Record for " + trStudentCell.innerText + " is created successfully!");
 }
 
-  }
-  // add event listener for checkbox
-  var checkboxes = document.getElementsByClassName("checkbox");
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener("click", toggleButtons);
-  }
-function showEditPopup(element) {
-	  alert("Edit the details");
-	}
+function onCheckBoxClick(checkbox) {
+  var rowSelect = checkbox.parentElement.parentElement;
+  var colorChange = document.getElementById("button");
 
-  var table = document.getElementById("myTable");
-  var rows = table.rows;
-  for (var i = 0; i < rows.length; i++) {
-    var cells = rows[i].cells;
-    if (cells.length > 10) {
-      var cell10 = cells[10];
-      cell10.parentNode.removeChild(cell10);
+  if (checkbox.checked == true) {
+    myArray.push(1);
+    rowSelect.style.backgroundColor = "yellow";
+
+    var deleteButton = document.createElement("td");
+    deleteButton.setAttribute("id", "deleteTd");
+    deleteButton.innerHTML =
+      '<button id="delete" type ="button" onclick="deleteFn(this)">Delete</button>';
+
+    var editButton = document.createElement("td");
+    editButton.setAttribute("id", "editTd");
+    editButton.innerHTML =
+      '<button id="edit" type = "button" onclick="editFn(this)">Edit</button>';
+    rowSelect.appendChild(deleteButton);
+    rowSelect.appendChild(editButton);
+    if (myArray.length > 0) {
+      colorChange.style.backgroundColor = "orange";
+      colorChange.style.border = "orange";
+      colorChange.disabled = "";
     }
-  }
+  } else {
+    myArray.pop(1);
 
+    if (myArray.length == 0) {
+      colorChange.style.backgroundColor = "grey";
+      colorChange.disabled = "disabled";
+    }
+    rowSelect.style.backgroundColor = "#fff";
+    rowSelect.deleteCell(8);
+    rowSelect.deleteCell(8);
+  }
+}
+
+function showDropDown(element) {
+  var tr = element.parentNode.parentNode;
+  console.log(tr);
+  let ti = tr.rowIndex;
+  if (document.getElementsByTagName("tr")[ti + 1].style.display == "none") {
+    document.getElementsByTagName("tr")[ti + 1].style.display = "table-row";
+  } else {
+    document.getElementsByTagName("tr")[ti + 1].style.display = "none";
+  }
+}
+
+function deleteFn(row) {
+  var colorChange = document.getElementById("button");
+  var tr = row.parentElement.parentElement;
+  var tr_1 = tr.nextElementSibling;
+  console.log(tr_1);
+  let ti = tr.rowIndex;
+  console.log(ti);
+  ti_1 = tr_1.rowIndex;
+  document.getElementById("myTable").deleteRow(ti_1);
+  document.getElementById("myTable").deleteRow(ti);
+
+  alert(
+    `Data of ${row.parentElement.parentElement.firstElementChild.nextElementSibling.innerText} deleted successfully`
+  );
+  var table_length = document.getElementById("myTable").rows.length;
+  console.log(table_length);
+  if (table_length == 1) {
+    document.getElementById("button").style.backgroundColor = "grey";
+  }
+  myArray.pop(1);
+  console.log(myArray.length);
+  if (myArray.length == 0) {
+    colorChange.style.backgroundColor = "grey";
+    colorChange.disabled = "disabled";
+  }
+}
+
+function editFn() {
+  prompt("Edit the data below!");
+}
