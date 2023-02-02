@@ -29,3 +29,7 @@ input[type=checkbox]:checked~#email {
 .yellow {
   background-color: yellow;
 }
+
+.dropDownTextArea {
+  display: none;
+}
