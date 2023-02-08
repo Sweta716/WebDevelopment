@@ -17,6 +17,8 @@ var socialMedia = {
 var t = new Title("CONNECT WITH ME!");
 var count = 3;
 var myArray = new Array();
+var rowHead = document.getElementsByTagName("th")[8];
+var rowHeadEdit = document.getElementsByTagName("th")[9];
 
 var hideRow = document.getElementsByClassName("dropDownTextArea");
 for (let i = 0; i < hideRow.length; i++) {
@@ -82,9 +84,14 @@ function onCheckBoxClick(checkbox) {
   var rowSelect = checkbox.parentElement.parentElement;
   var colorChange = document.getElementById("button");
 
+
   if (checkbox.checked == true) {
     myArray.push(1);
     rowSelect.style.backgroundColor = "yellow";
+    rowHead.style.display = "table-cell";
+      rowHeadEdit.style.display ="table-cell";
+  
+    
 
     var deleteButton = document.createElement("td");
     deleteButton.setAttribute("id", "deleteTd");
@@ -98,14 +105,20 @@ function onCheckBoxClick(checkbox) {
     rowSelect.appendChild(deleteButton);
     rowSelect.appendChild(editButton);
     if (myArray.length > 0) {
+      
+
       colorChange.style.backgroundColor = "orange";
       colorChange.style.border = "orange";
       colorChange.disabled = "";
     }
   } else {
     myArray.pop(1);
+   
 
     if (myArray.length == 0) {
+      rowHead.style.display = "none";
+      rowHeadEdit.style.display ="none";
+    
       colorChange.style.backgroundColor = "grey";
       colorChange.disabled = "disabled";
     }
@@ -148,6 +161,8 @@ function deleteFn(row) {
   myArray.pop(1);
   console.log(myArray.length);
   if (myArray.length == 0) {
+    rowHead.style.display = "none";
+    rowHeadEdit.style.display ="none";
     colorChange.style.backgroundColor = "grey";
     colorChange.disabled = "disabled";
   }
