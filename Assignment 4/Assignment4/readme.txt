@@ -1,5 +1,4 @@
- 1. Name : Jatin Parmar
-	NUID : 002193739
+
 		
  2. Aplication Details: 
 	- The application takes inputs such as text, radio button, checkboxes to fill the form and validate the fields.

@@ -18,21 +18,40 @@ window.onload = function() {
         "comments": params.get('text'),
         "checkDrink": params.get('checkDrink'),
         "drink": params.get('drink'),
-        "source": getSocialValue(params),
+      //  "source": getCheckedSources(),
         "drinkValue": params.get('drinkValue')
     }
 
     displayTable();
 }
+let getCheckedSources = () => {
+    let sources = [];
+    let checkboxes = document.querySelectorAll("input[type='checkbox'][name='source']");
+    let params = new URL(document.location).searchParams;
+    sources = params.getAll("source");
+    return sources.join(", ");
+};
+// let getCheckedSources = () => {
+//     let sources = [];
+//     let checkboxes = document.querySelectorAll("input[type='checkbox'][name='source']");
+//     for (let i = 0; i < checkboxes.length; i++) {
+//         if (checkboxes[i].checked) sources.push(checkboxes[i].value);
+//     }
+//     return sources;
+// };
 
 // to get a string from all social media values
-let getSocialValue = (params) => {
-    let social = "";
-    social= params.get("source");
-   console.log(social)
-    // social = social.substr(0, social.length - 2)
-    return social;
-};
+// let getSocialValue = (params) => {
+//     let social = "";
+//     let sources = params.getAll("source");
+//     for (let i =0; i< sources.length; i++){
+//         social += sources[i] +", ";
+//     }
+
+//    console.log(social)
+//     // social = social.substr(0, social.length - 2)
+//     return social;
+// };
 
 // to populate form value in table
 let displayTable = function() {
@@ -47,10 +66,19 @@ let displayTable = function() {
     tbody.children[7].children[1].innerHTML = obj.drink ? obj.city : "-";
     tbody.children[8].children[1].innerHTML = obj.drink ? obj.state : "-";
     tbody.children[9].children[1].innerHTML = obj.zipcode ? obj.zipcode : "-";
-    tbody.children[10].children[1].innerHTML = obj.source ? obj.source : "-";
+    //tbody.children[10].children[1].innerHTML = obj.source ? obj.source : "-";
+   // Add the following code to display the checked sources
+   let sources = getCheckedSources();
+
+   tbody.children[10].children[1].innerHTML = sources ? sources : "-";
+  
+
+
     tbody.children[11].children[1].innerHTML = obj.comments ? obj.comments : "-";
     tbody.children[12].children[1].innerHTML = obj.drink ? obj.drink : "-";
 
     if (obj.drinkValue) tbody.children[13].children[1].innerHTML = obj.drinkValue;
     else tbody.children[9].style.display = "none";
+
+   
 }
