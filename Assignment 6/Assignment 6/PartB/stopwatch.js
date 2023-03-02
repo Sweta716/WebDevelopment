@@ -1,62 +1,53 @@
-$(document).ready(()=>{
-  var execution = 0,
-    intervalSetup = null,
-    startTime = null,
-    pauseTime = null,
-    pauseDuration = 0;
+$(document).ready(() => {
+  let isRunning = false;
+  let startTime = null;
+  let stopTime = null;
+  let stopDuration = 0;
 
-  $("#start-pause").on("click", start);
+  $("#start-stop").on("click", start);
   $("#reset").on("click", reset);
 
   function start() {
-    if (execution) {
+    if (isRunning) {
       clearInterval(intervalSetup);
-      pauseTime = new Date();
-      execution = 0;
-      $("#start-pause").text("START");
+      stopTime = new Date();
+      isRunning = false;
+      $("#start-stop").text("START");
     } else {
-      if (pauseTime === null) {
+      if (stopTime === null) {
         startTime = new Date();
-        intervalSetup = setInterval(count, 10);
-        execution = 1;
-        $("#start-pause").text("PAUSE");
       } else {
-        pauseDuration += new Date() - pauseTime;
-        intervalSetup = setInterval(count, 10);
-        execution = 1;
-        $("#start-pause").text("PAUSE");
+        stopDuration += new Date() - stopTime;
       }
+      intervalSetup = setInterval(() => {
+        const elapsedTime = new Date(new Date() - startTime - stopDuration);
+        const hr = handleZeros(elapsedTime.getUTCHours(), 2);
+        const min = handleZeros(elapsedTime.getUTCMinutes(), 2);
+        const sec = handleZeros(elapsedTime.getUTCSeconds(), 2);
+        const ms = handleZeros(elapsedTime.getUTCMilliseconds(), 3);
+        $("#stopwatch").text(`${hr}:${min}:${sec}`);
+        console.log(ms);
+      }, 10);
+      isRunning = true;
+      $("#start-stop").text("STOP");
     }
   }
 
   function reset() {
     clearInterval(intervalSetup);
-    pauseDuration = 0;
+    stopDuration = 0;
     startTime = null;
-    pauseTime = null;
-    execution = 0;
+    stopTime = null;
+    isRunning = false;
     $("#stopwatch").text("00:00:00");
-    $("#start-pause").text("START");
-  }
-
-  function count() {
-    var elapsedTime = new Date(new Date() - startTime - pauseDuration);
-    var hr = elapsedTime.getUTCHours(),
-      min = elapsedTime.getUTCMinutes(),
-      sec = elapsedTime.getUTCSeconds(),
-      ms = elapsedTime.getUTCMilliseconds();
-
-    $("#stopwatch").text(
-      handleZeros(hr, 2) + ":" + handleZeros(min, 2) + ":" + handleZeros(sec, 2)
-    );
-    console.log(handleZeros(ms, 3));
+    $("#start-stop").text("START");
   }
 
   function handleZeros(value, digit) {
-    var dummyZeros = "";
-    for (i = 0; i < digit; i++) {
+    let dummyZeros = "";
+    for (let i = 0; i < digit; i++) {
       dummyZeros += "0";
-      return (dummyZeros + value).slice(-digit);
     }
+    return (dummyZeros + value).slice(-digit);
   }
 });

@@ -1,4 +1,4 @@
-function Operation(operand) { 
+function Cal(operand) { 
 				
 
     var firstValue = parseInt(document.getElementById('txtFirstNumber').value);
@@ -23,16 +23,6 @@ function Operation(operand) {
     document.getElementById("resultbtn").innerHTML =  'Result: '+result;
 }	
 
-// function validate(){
-//     var num1 = document.getElementById('txtFirstNumber').value;
-//     var num2 = document.getElementById('txtSecondNumber').value;
-//     if(num1==""){
-//         alert('NUM1 CANNOT BE BLANK')
-//     }
-//     else{
-//         validate()
-//     }
-// }
 
 
   document.getElementById("display").innerHTML=localStorage.getItem ("textvalue")

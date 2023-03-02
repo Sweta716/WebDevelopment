@@ -1,11 +1,11 @@
-html,
+ html,
 body {
   padding: 0;
   margin: 0;
 }
 
 body {
-  background-color: rgb(117, 119, 79);
+  background-color: rgb(60, 76, 99);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -16,17 +16,79 @@ body {
   min-height: 100vh;
 }
 
-#Watch-body {
-  text-align: center;
-}
 
-#Watch-body a {
+
+#Watch-body button {
+  background-color: blueviolet;
   font-size: 2em;
   margin: 0 50px 0 50px;
   cursor: pointer;
+}
+#Watch-body {
+  text-align: center;
+  position: relative;
+  width: 685px;
+  height: 685px;
+  border-radius: 50%;
+  background-color:grey;
+  border: 20px solid #000;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#Watch-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#stopwatch {
+  font-size: 6em;
+  color: white;
+  z-index: 1;
+}
+
+#start-stop,
+#reset {
+  position:fixed;
+  z-index: 2;
+  font-size: 1.5em;
+  background-color: blueviolet;
+  color: white;
+  border: none;
+  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-stop {
+  top: 60%;
+  left: 35%;
+}
+
+#reset {
+  top: 60%;
+  right: 35%;
+}
+
+
+#stopwatch {
+  font-size: 5em;
 }
 
 #stopwatch {
   font-size: 10em;
 }
-
+ 
