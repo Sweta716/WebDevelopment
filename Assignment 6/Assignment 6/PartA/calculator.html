@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link rel="stylesheet" href="cal.css">
+    <link rel="stylesheet" href="calculator.css">
 </head>
 
 <body>
@@ -17,15 +17,12 @@
 
         <form >
         <h2> Simple Calculator</h2>
-
-        Number1:<input type="text" id="txtFirstNumber" class="numeric" onblur="formValidation(this, 1, 'firstNumber')"/><br>
-       
-        <div id="errorMsgfirstNumber" style="display: none; color: red">
+        Number1:<input type="text" id="txtFirstNumber" class="numeric" onblur="formValidation(this, 1, 'firstNumber')" required/><br>
+        <div id="errorMsgfirstNumber" style="display: none; color: red" >
             Invalid input. Only number values permitted
           </div>
           <br />
-
-        Number2:<input type="text" id="txtSecondNumber" class="numeric" onblur="formValidation(this, 1, 'SNumber')"/><br>
+        Number2:<input type="text" id="txtSecondNumber" class="numeric" onblur="formValidation(this, 1, 'SNumber')" required/><br>
         <div id="errorMsgSNumber" style="display: none; color: red">
             Invalid input. Only number values permitted
           </div>
@@ -46,6 +43,6 @@
     </div>
  
 </body>
-<script src="./cal.js"></script>
+<script src="./calculator.js"></script>
 
 </html>

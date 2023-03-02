@@ -135,7 +135,7 @@ form.addEventListener('submit', function (e) {
     // submit to the server if the form is valid
     if (isFormValid) {
         
-            window.location.href="cal.html";  
+            window.location.href="calculator.html";  
             passvalue()
           
 
