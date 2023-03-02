@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="cal.css">
+</head>
+
+<body>
+
+     
+    <div id="welcome"><b>Welcome to my Calculator-</b> <span id="display"></span></div>
+    <div class="container">
+
+        <form >
+        <h2> Simple Calculator</h2>
+
+        Number1:<input type="text" id="txtFirstNumber" class="numeric" onblur="formValidation(this, 1, 'firstNumber')"/><br>
+       
+        <div id="errorMsgfirstNumber" style="display: none; color: red">
+            Invalid input. Only number values permitted
+          </div>
+          <br />
+
+        Number2:<input type="text" id="txtSecondNumber" class="numeric" onblur="formValidation(this, 1, 'SNumber')"/><br>
+        <div id="errorMsgSNumber" style="display: none; color: red">
+            Invalid input. Only number values permitted
+          </div>
+          <br />
+        <p id="resultbtn">Result:</p><br>
+     
+        <div class="buttons" style="width: 500px;">
+            
+            <input type="button" id="btnadd" value="Add" onclick="Operation('+')" />
+            <input type="button" id="btnsubtract" value="Subtract" onclick="Operation('-')" /><br><br>
+            <input type="button" id="btnmultiply" value="Multiply" onclick="Operation('*')" />
+            <input type="button" id="btndivision" value="Divide" onclick="Operation('/')" />
+            
+        </div>
+    </form>
+      
+
+    </div>
+ 
+</body>
+<script src="./cal.js"></script>
+
+</html>

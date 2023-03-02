@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+:root{
+    --primary:#167BFF;
+    --dark:#1F2973;
+    --light:white;
+}
+
+body {
+    background-color: #98bde0;
+    font-family: 'Poppins', 'sans-serif';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color:#fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 340px;
+    height: 360px;
+    padding: 0px 7px 9px 14px;
+}
+h2{
+    text-align: center;
+    margin: 12px 0 30px;
+}
+.buttons{
+    display: flex;
+   
+}
+#btnadd{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 1rem;
+    color:var(--light);
+    background-color: var(--primary);
+    margin: 0px 0px 0 -2px;
+    padding: 11px;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+}
+#btnsubtract{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 1rem;
+    color:var(--light);
+    background-color: var(--primary);
+    margin: 0 0px 0px 11px;
+    padding: 11px;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+}
+#btnmultiply{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 1rem;
+    color:var(--light);
+    background-color: var(--primary);
+    margin: 0 0.5rem;
+    padding: 11px;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+}
+#btndivision{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 1rem;
+    color:var(--light);
+    background-color: var(--primary);
+    margin: 0px 0px 0px 2px;
+    padding: 11px;
+    border-radius: 0.5rem;
+    transition: 0.4s;
+}
+#btnreset{
+
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    padding: 6px;
+    margin: 26px 0 0 264px;
+    color:var(--light);
+    background-color: var(--primary);
+    border-radius: 0.5rem;
+    transition: 0.4s;
+    
+}
+#txtFirstNumber{
+    margin: 7px 0px 5px 11px;
+}
+
+#txtSecondNumber{
+    margin: 7px 0px 5px 11px;
+}
+div button{
+    display:inline-block;
+}
+#btnADD:hover{
+    opacity: 0.7;
+}
+#btnSUB:hover{
+    opacity: 0.7;
+}
+#btnMUL:hover{
+    opacity: 0.7;
+}
+#btnDIV:hover{
+    opacity: 0.7;
+}
+
+button:active{
+    background-color: var(--light);
+}
+
+#welcome{
+    font-size: large;
+    color: white;
+    margin: -524px -225px 0 0;
+    display: flex;
+    justify-content: center;
+}
