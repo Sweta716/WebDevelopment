@@ -44,10 +44,10 @@ $(document).ready(() => {
   }
 
   function handleZeros(value, digit) {
-    let dummyZeros = "";
+    let zero = "";
     for (let i = 0; i < digit; i++) {
-      dummyZeros += "0";
+      zero += "0";
     }
-    return (dummyZeros + value).slice(-digit);
+    return (zero + value).slice(-digit);
   }
 });
