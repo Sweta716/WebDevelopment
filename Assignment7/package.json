@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "i": "^0.3.7"
+  },
+  "name": "assignment-7a",
+  "description": "INFO 6150 - Web Design and User Experience Engineering",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thecodercoder/fem-easybank.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thecodercoder/fem-easybank/issues"
+  },
+  "homepage": "https://github.com/thecodercoder/fem-easybank#readme"
+}
