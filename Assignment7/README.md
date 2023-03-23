@@ -25,4 +25,4 @@ Mixins => @mixin lets us create reusable css code. Created two separate index an
 
 Functions => It allow to define complex operations on SassScript values that we can re-use throughout your stylesheet. used linear-gradient
 
-" CSS GRID AND FLEX ARE USED IN RECENT coffee ARTICLES. "
+" CSS GRID AND FLEX ARE USED IN  comment ARTICLES. "
