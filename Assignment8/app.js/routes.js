@@ -1,12 +1,13 @@
-var Assn8 = require('./models/assn8');
+var App = require('./models/app');
 var bcrypt = require('bcrypt');
+const { body, validationResult } = require('express-validator');
 const saltRounds = 10;
 module.exports = function (app) {
     //server routes 
 
     //get all users
     app.get('/user/getAll', function (req, res) {
-        Assn8.find(function (err, samples) {
+        App.find(function (err, samples) {
             if (err)
                 res.send(err);
             console.log('samples', samples);
@@ -14,128 +15,127 @@ module.exports = function (app) {
         });
     });
 
-        app.post('/user/insert', function (req, res) {
-        console.log(req.body);
-        var regexEmail = /[a-z0-9]+@northeastern.edu/;
-        var regexPwd = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%&*]).{8,}$/;
-        var regExName = /^[a-zA-Z]+$/;
-        var em = req.body.email;
-        var pass = req.body.password;
-        var fname = req.body.full_name;
-        var query = { email: req.body.email };
-        if (!fname || !fname.match(regExName)) {
-            res.send("Name is in invalid format");
+ 
+
+// Define validation rules for incoming request data
+const insertUserValidationRules = [
+  body('full_name').isAlpha().withMessage('Name is in invalid format'),
+  body('email').isEmail().normalizeEmail().custom((value) => {
+    if (!value.endsWith('@northeastern.edu')) {
+      throw new Error('Email is in invalid format, use northeastern.edu format');
+    }
+    return true;
+  }),
+  body('password').matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%&*]).{8,}$/)
+    .withMessage('Password is in invalid format, follow password rules : 1 Uppercase Character, 1 lower character, 1 special character, 1 digit and minimum 8 characters'),
+];
+
+// Handle user insertion POST request
+app.post('/user/insert', insertUserValidationRules, (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+  const fullName = req.body.full_name;
+  const query = { email: email };
+
+  // Check if email already exists in database
+  App.count(query, (err, count) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (count > 0) {
+      return res.status(400).send('Email Id Exists!');
+    }
+
+    // Generate salt and hash for the password
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      bcrypt.hash(password, salt, (err, hash) => {
+        if (err) {
+          return res.status(500).send(err);
         }
-        else if (!em || !em.match(regexEmail)) {
-            res.send("Email is in invalid format, use northeastern.edu format");
-        }
-        else if (!pass || !pass.match(regexPwd)) {
-            res.send("Password is in invalid format, follow password rules : 1 Uppercase Character, 1 lower character, 1 special character, 1 digit and minimum 8 characters");
-        }
-        else {
-            Assn8.count(query, function (err, count) {
-                if (err) {
-                    res.send(err);
-                }
-                if (count == 1) {
-                    res.send("Email Id Exists!");
-                }
-                else {
-                    bcrypt.genSalt(saltRounds, function (err, salt) {
-                        bcrypt.hash(req.body.password, salt, function (err, hash) {
-                            var record = new Assn8({
-                                full_name: req.body.full_name,
-                                email: req.body.email,
-                                password: hash
-                            });
-                            record.save(function (err, rec) {
-                                if (err)
-                                    res.send(err);
-                                console.log('Saved ' + rec);
-                                res.send("Created User successfully");
-                            });
-                        });
-                    });
-                }
-            });
-        }
+        // Save user data to database
+        const user = new App({
+          full_name: fullName,
+          email: email,
+          password: hash
+        });
+        user.save((err, savedUser) => {
+          if (err) {
+            return res.status(500).send(err);
+          }
+          console.log('Saved ' + savedUser);
+          return res.send('Created User successfully');
+        });
+      });
     });
-    
+  });
+});
+
     //update route
-    app.put('/user/edit', function (req, res) {
-        console.log(req.body);
-        var query = { email: req.body.email };
-        var regexEmail = /[a-z0-9]+@northeastern.edu/;
-        var regexPwd = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%&*]).{8,}$/;
-        var regExName = /^[a-zA-Z]+$/;
-        var em = req.body.email;
-        var pass = req.body.password;
-        var fname = req.body.full_name;
-
-        if (!fname.match(regExName)) {
-            res.send("Name is in invalid format");
+   
+    app.put('/user/edit', async function (req, res) {
+        try {
+          const { email, full_name, password } = req.body;
+          const query = { email };
+      
+          const regexEmail = /[a-z0-9]+@northeastern.edu/;
+          const regexPwd = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%&*]).{8,}$/;
+          const regExName = /^[a-zA-Z]+$/;
+      
+          if (!full_name.match(regExName)) {
+            return res.send("Name is in invalid format");
+          }
+          if (!email.match(regexEmail)) {
+            return res.send("Email is in invalid format, use northeastern.edu format");
+          }
+          if (!password.match(regexPwd)) {
+            return res.send("Password is in invalid format, follow password rules: 1 Uppercase Character, 1 lower character, 1 special character, 1 digit and minimum 8 characters");
+          }
+      
+          const count = await App.countDocuments(query);
+          if (count === 0) {
+            return res.send("User does not exist!");
+          }
+      
+          const salt = await bcrypt.genSalt(saltRounds);
+          const hash = await bcrypt.hash(password, salt);
+      
+          const upd = { $set: { full_name, password: hash } };
+          await App.updateOne(query, upd);
+      
+          res.send("Updated user");
+        } catch (err) {
+          res.send(err);
         }
-        else if (!em.match(regexEmail)) {
-            res.send("Email is in invalid format, use northeastern.edu format");
-        }
-        else if (!pass.match(regexPwd)) {
-            res.send("Password is in invalid format, follow password rules : 1 Uppercase Character, 1 lower character, 1 special character, 1 digit and minimum 8 characters");
-        }
-        else {
-            Assn8.count(query, function (err, count) {
-                if (err) {
-                    res.send(err);
-                }
-                if (count == 0) {
-                    res.send("User does not exists!");
-                }
-                else {
-                    bcrypt.genSalt(saltRounds, function (err, salt) {
-                        bcrypt.hash(req.body.password, salt, function (err, hash) {
-                            var upd = { $set: { full_name: req.body.full_name, password: hash } };
-                            Assn8.updateOne(query, upd, function (err, dc) {
-                                if (err)
-                                    res.send(err);
-                                else
-                                    res.send("Updated user");
-                            });
-                        });
-                    });
-                    
-                }
-            });
-
-        }
-    });
-
+      });
+      
     //delete route
-    app.delete('/user/delete', function (req, res) {
-        console.log(req.body);
-        var query = { email: req.body.email };
-        var regexEmail = /[a-z0-9]+@northeastern.edu/;
-        var em = req.body.email;
 
-        if (!em.match(regexEmail)) {
-            res.send("Email is in invalid format, use northeastern.edu format");
-        }
-        else {
-            Assn8.count(query, function (err, count) {
-                if (err) {
-                    res.send(err);
-                }
-                if (count == 0) {
-                    res.send("User does not exists!");
-                }
-                else {
-                    Assn8.deleteOne(query, function (err, dc) {
-                        if (err)
-                            res.send(err);
-                        else
-                            res.send("Deleted User Successfully");
-                    });
-                }
-            });
-
-        }
-    });
-}
+app.delete('/user/delete', async function (req, res) {
+    try {
+      const email = req.body.email;
+      const regexEmail = /[a-z0-9]+@northeastern.edu/;
+      
+      if (!email.match(regexEmail)) {
+        res.status(400).send("Email is in invalid format, use northeastern.edu format");
+        return;
+      }
+  
+      const count = await App.count({ email: email });
+      
+      if (count == 0) {
+        res.status(404).send("User does not exist!");
+        return;
+      }
+  
+      await App.deleteOne({ email: email });
+      res.send("Deleted user successfully");
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  });
+}  

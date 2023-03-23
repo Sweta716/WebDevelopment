@@ -1,0 +1,21 @@
+Using Node, Mongo, and Express for User Management
+This API offers fundamental user data management features, including the ability to add, edit, delete, and retrieve user data. The API's endpoints are implemented using the Node.js, Mongo Database, and Express framework.
+
+Prerequisites
+You need a computer with Node.js and MongoDB installed in order to access the API.
+
+Endpoints
+The following endpoints are offered by the API:
+
+Create a new user by POSTing /user/create and including your full name, email address, and a secure password.
+PUT: /user/edit — enter the updated information along with the email address to update the complete name and password of an existing user.
+DELETE: /user/delete - Enter the email address to delete an existing user.
+GET: /user/getAll - Get all user data from the database, including complete name, email, and password.
+
+http://localhost:8080/user/insert?fname=swera&em=swet@northeastern.edu&pass=Dotamanga16@
+
+{
+  "full_name": "swera",
+  "email": "swet@northeastern.edu",
+  "password": "Dotamanga16@"
+}
