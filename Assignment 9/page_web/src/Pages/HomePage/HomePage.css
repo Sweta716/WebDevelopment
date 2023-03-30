@@ -110,7 +110,7 @@
   
   .card-text {
     font-size: 16px;
-    color: #333;
+    color: #0a0909;
   }
   
   .btn-primary,
@@ -124,5 +124,53 @@
   .btn-primary:hover,
   .btn-secondary:hover {
     background-color: #b69c72;
+  }
+  
+
+   #community-img {
+    width: 300px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 991.98px) {
+    #community-img {
+      width: 200px;
+    }
+  }
+  
+  .features-box {
+    padding: 3rem;
+    background-color: F1DEC9;
+  }
+  
+  .features-box h3 {
+    font-weight: bold;
+  }
+  
+  @media (max-width: 991.98px) {
+    .features-box {
+      padding: 2rem;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .features-box {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 575.98px) {
+    .features-box {
+      padding: 1rem;
+    }
+  }
+  
+  .order1 {
+    order: 1;
+  }
+  
+  .order2 {
+    order: 2;
   }
   

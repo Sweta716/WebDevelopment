@@ -2,7 +2,7 @@ import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import HomePage from "./Pages/HomePage/HomePage";
-import AboutPage from "./Pages/AboutPage/AboutPage";
+import AboutPage from "./Pages/Review/Review";
 import JobPage from "./Pages/JobPage/JobPage";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

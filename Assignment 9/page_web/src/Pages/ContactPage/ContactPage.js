@@ -15,7 +15,7 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row" style={{ backgroundColor: 'rgba(165, 42, 42, 0.5) ', padding: '20px' }}>
           <div class="col-lg-5">
             <div class="contact-details mb-4 mb-lg-0">
               <p class="mb-3">

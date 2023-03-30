@@ -1,7 +1,8 @@
 import React from "react";
-import AboutCard from "../../Components/AboutCard/AboutCard";
+import AboutCard from "../../Components/Review/Review";
 import MainScreen from "../../Components/MainScreen/MainScreen";
-import about from "../../Data/about";
+import about from "../../Data/review";
+import "./Review.css"; // import custom CSS file
 
 const AboutPage = () => {
   const data = () => {
@@ -10,7 +11,7 @@ const AboutPage = () => {
   return (
     <>
       <MainScreen title="Review" />
-      <div className="Cards">
+      <div className="cards-container"> {/* add a new container element */}
         {data().map((data) => (
           <AboutCard
             title={data.title}
