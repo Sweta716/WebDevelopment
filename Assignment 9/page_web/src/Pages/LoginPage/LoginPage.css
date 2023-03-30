@@ -1,0 +1,30 @@
+
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #BF9E87;
+  opacity: 0.9;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.login-container form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.login-container form label {
+  color: #3F2A14;
+}
+
+.login-container form .submitBtn {
+  background-color: #a45c00;
+  border: none;
+  margin-top: 20px;
+}
+
+.login-container form .submitBtn:hover {
+  background-color: #844800;
+}
