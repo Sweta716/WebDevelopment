@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
-const userRouters = require("./routes/userRouters");
+const userRouters = require("./routes/Routers");
 const { notFound, errorHandler } = require("./exceptions/exception");
 const cors = require("cors");
 

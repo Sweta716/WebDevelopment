@@ -9,7 +9,7 @@ Created a backend folder for connecting to the mongodb and running the localhost
 - Routers -> userRouters are created for each operation which will go to the Controllers for respective opertions
 - Controllers -> In userControllers, for each operation a different method is created with await and async handling to perform their respective operations on the mongodb
 - Models -> In userModel, The schema for the user table is defined and bcrypt of password also done before saving into the database
-- Middlewares -> In errorMiddlewares all the generic errors are defined ex. 400 "Not Found" or 201 "Success"
+- Exception -> In exception all the generic errors are defined ex. 400 "Not Found" or 201 "Success"
 
 - 4 Pages are created with relevant data in it using single component card for heading and printing the horizontal lines
 

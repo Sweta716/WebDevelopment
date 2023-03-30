@@ -1,7 +1,7 @@
 const e = require("express");
 const asyncHandler = require("express-async-handler");
-const { findByIdAndDelete, findOneAndDelete } = require("../models/userModel");
-const User = require("../models/userModel");
+const { findByIdAndDelete, findOneAndDelete } = require("../models/Model");
+const User = require("../models/Model");
 const bcrypt = require("bcryptjs");
 
 const authUser = asyncHandler(async (req, res) => {
