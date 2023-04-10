@@ -1,0 +1,21 @@
+/* #weatherCard {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 0.2px solid;
+  border-radius: 10%;
+} */
+#weatherCard {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#weatherCard h4, #weatherCard h5, #weatherCard p {
+  margin: 5px 0;
+}
