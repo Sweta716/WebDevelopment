@@ -10,21 +10,10 @@ function Hourly(props) {
   const [_data, _setData] = useState([]);
 
   useEffect(() => {
-    // Filter data for the selected day
     const tempData = completeData.filter((cd) => cd.day == _selectedParam.day);
-
-    // Create an array of hourly data for the selected day
-    const hourlyData = [];
-    for (let i = 0; i < 24; i++) {
-      const hourData = tempData.find(
-        (d) => moment(d.dt_txt).hour() === i && moment(d.dt_txt).day() === moment().day(_selectedParam.day).day()
-      );
-      hourlyData.push(hourData || {});
-    }
-
-    _setData(hourlyData);
+    _setData(tempData);
     console.log(_data);
-  }, []);
+  }, [_selectedParam.day]);
 
   return (
     <div className="container">

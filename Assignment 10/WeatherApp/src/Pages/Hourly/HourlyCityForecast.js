@@ -1,5 +1,5 @@
 import React from "react";
-import "../../HourlyCityForecast.css";
+import "../Hourly/HourlyCityForecast.css";
 
 var moment = require("moment");
 

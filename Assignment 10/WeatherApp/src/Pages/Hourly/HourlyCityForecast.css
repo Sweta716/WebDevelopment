@@ -1,0 +1,63 @@
+
+ #weatherCard {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #252525;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+#weatherCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#weatherCard h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#weatherCard h5 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+#weatherCard p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+#weatherCard i {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  #weatherCard {
+    margin-right: 0;
+    margin-bottom: 30px;
+  }
+
+  #weatherCard h4 {
+    font-size: 20px;
+  }
+
+  #weatherCard h5 {
+    font-size: 16px;
+  }
+
+  #weatherCard i {
+    font-size: 24px;
+  }
+}

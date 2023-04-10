@@ -1,6 +1,21 @@
 .container {
     text-align: center;
   }
+  btn {
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  btn:hover {
+    background: #fff;
+    color: #ff416c;
+  }
   
   .weather {
     width: 300px;

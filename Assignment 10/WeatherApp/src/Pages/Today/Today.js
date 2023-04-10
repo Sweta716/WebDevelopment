@@ -153,7 +153,7 @@ function Today() {
       <br></br>
       <br></br>
 
-      <h2>Weather Report - : {cityName} </h2>
+      <h2>Weather Forcast - : {cityName} </h2>
       <br />
       <br />
       <div>
@@ -166,7 +166,7 @@ function Today() {
         {"     "}
         <input
           type="button"
-          className="btn btn-warning mt-3"
+          className="btn btn-primary mt-3"
           value="Get Weather Details"
           onClick={refreshData}
           disabled={cityName == 0}
